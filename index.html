@@ -22,58 +22,64 @@
         }
     </style>
 </head>
-<body class="min-h-screen w-[80%] mx-auto p-2">
+<body class="min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
     <section class="job-title">
         <h1 class="text-2xl text-bold ">Job Application Tracker</h1>
-        <div class="cards flex gap-5 justify-between">
+        <div class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="card card-border bg-base-200 w-full mt-3">
                 <div class="card-body">
                     <h2 class="card-title">Total</h2>
-                    <p id="total-count">0</p>
+                    <p id="total-count" class= "text-2xl">0</p>
                 </div>
             </div>
                 <div class="card card-border bg-base-200 w-full mt-3">
                 <div class="card-body">
                     <h2 class="card-title">Interview</h2>
-                    <p id="interview-count">0</p>
+                    <p id="interview-count" class="text-green-500 text-2xl">0</p>
                 </div>
             </div>
                 <div class="card card-border bg-base-200 w-full mt-3">
                 <div class="card-body">
                     <h2 class="card-title">Rejected</h2>
-                    <p class="reject-count">0</p>
+                    <p id="reject-count" class="text-red-500 text-2xl">0</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="job-lists mt-10">
-        <header class="flex justify-between">
+        <header class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
             <h1>Available Jobs</h1>
-            <p class="text-neutral/50"><span>0</span>Jobs</p>
+            <p class="text-neutral/50"><span id="job-count">0</span>Jobs</p>
         </header>
         <hr class="my-5">
-        <div class="flex gap-3 mt-5">
+        <div class="flex flex-wrap gap-3 mt-5">
             <button onclick="toggle('button-all')" id="button-all" class="btn btn-active btn-primary">All</button>
             <button onclick="toggle('button-interview')" id="button-interview" class="btn">Interview</button>
             <button onclick="toggle('button-rejected')" id="button-rejected" class="btn">Rejected</button>
         </div>
-        <div id="cards" class=" grid gap-5 mt-5">
+
+        <div id="filter-section" class="hidden">
+
+        </div>
+
+        <div id="cards" class="grid grid-row-1 md:grid-row-2 lg:grid-row-3 gap-5 mt-5">
             <div class="card card-border border-l-gray-600 border-l-2 bg-white w-auto">
                 <div class="card-body justify-start">
                     <div class="card-title justify-between">
                         <h2 class="card-title">Company Name</h2>
-                        <button class="btn btn-outline border-0 rounded-full"><i class="fa-solid fa-bucket"></i></button>
+                        <button class="btn btn-delete btn-outline border-0 rounded-full"><i class="fa-solid fa-bucket"></i></button>
                     </div>
                     <div class="card-info">
                         <p class="job-name text-neutral/50">Job Name</p>
                         <p class="salary-info text-neutral/50">Salary Info</p>
-                        <button id="btn-update" class="btn btn-outline my-2">Not Applied</button>
+                        <button id="btn-update" class="btn btn-active my-2">Not Applied</button>
                         <p class="details-info text-neutral/50">A card component has a figure, a body part, and inside body there are title and actions parts</p>
                     </div>
-                    <div class="card-actions justify-start">
-                        <button id="btn-accepet" class="btn btn-outline btn-success">Interview</button>
-                        <button id="btn-reject" class="btn btn-outline btn-error">Rejected</button>
+                    <div class="card-actions flex flex-wrap gap-2 justify-start">
+                        <button id="btn-accept" class="btn btn-accept btn-outline btn-success">Interview</button>
+                        <button id="btn-reject" class="btn btn-reject btn-outline btn-error">Reject</button>
                     </div>
                 </div>
             </div>
@@ -81,22 +87,51 @@
             <div class="card card-border border-l-gray-600 border-l-2 bg-white w-auto">
                 <div class="card-body justify-start">
                     <div class="card-title justify-between">
-                        <h2 class="card-title">Company Name</h2>
+                        <h2 class="card-title">Company Name 2</h2>
                         <button class="btn btn-outline border-0 rounded-full"><i class="fa-solid fa-bucket"></i></button>
                     </div>
                     <div class="card-info">
                         <p class="job-name text-neutral/50">Job Name</p>
                         <p class="salary-info text-neutral/50">Salary Info</p>
-                        <button id="btn-update" class="btn btn-outline my-2">Not Applied</button>
+                        <button id="btn-update" class="btn btn-active my-2">Not Applied</button>
                         <p class="details-info text-neutral/50">A card component has a figure, a body part, and inside body there are title and actions parts</p>
                     </div>
-                    <div class="card-actions justify-start">
-                        <button id="btn-accepet" class="btn btn-outline btn-success">Interview</button>
-                        <button id="btn-reject" class="btn btn-outline btn-error">Rejected</button>
+                    <div class="card-actions flex flex-wrap gap-2 justify-start">
+                        <button id="btn-accept" class="btn btn-accept btn-outline btn-success">Interview</button>
+                        <button id="btn-reject" class="btn btn-reject btn-outline btn-error">Reject</button>
                     </div>
                 </div>
-            </div>          
+            </div>
+
+            <div class="card card-border border-l-gray-600 border-l-2 bg-white w-auto">
+                <div class="card-body justify-start">
+                    <div class="card-title justify-between">
+                        <h2 class="card-title">Company Name 3</h2>
+                        <button class="btn btn-outline border-0 rounded-full"><i class="fa-solid fa-bucket"></i></button>
+                    </div>
+                    <div class="card-info">
+                        <p class="job-name text-neutral/50">Job Name</p>
+                        <p class="salary-info text-neutral/50">Salary Info</p>
+                        <button id="btn-update" class="btn btn-active my-2">Not Applied</button>
+                        <p class="details-info text-neutral/50">A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                    </div>
+                    <div class="card-actions flex flex-wrap gap-2 justify-start">
+                        <button id="btn-accept" class="btn btn-accept btn-outline btn-success">Interview</button>
+                        <button id="btn-reject" class="btn btn-reject btn-outline btn-error">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section class="mt-10">
+        <div id="no-jobs" class="flex flex-col items-center gap-5 border-2 border-gray-300 rounded-lg p-40 hidden">
+            <i class="fa fa-10x fa-file" aria-hidden="true"></i>
+            <h1 class="font-bold text-2xl">No Jobs Available</h1>
+            <p class="text-neutral/50">Check back soon for new job opportunities.</p>
+        </div>
+    </section>
+
     <script src="script/script.js"></script>
 </body>
 </html>
